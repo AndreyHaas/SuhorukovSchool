@@ -20,17 +20,15 @@ class Calculation {
             byte userValue = scanner.nextByte();
             attempt++;
 
-            if (attempt == ATTEMPT_MAX_COUNT) {
+            if (ATTEMPT_MAX_COUNT == attempt) {
                 System.out.println("Превышено количество попыток");
                 break;
             }
 
             if (userValue < rndVal) {
                 System.out.println("Псевдо-случайное число БОЛЬШЕ указанного вами");
-                attempt++;
             } else if (userValue > rndVal) {
                 System.out.println("Псевдо-случайное число МЕНЬШЕ указанного вами");
-                attempt++;
             } else {
                 System.out.println("Вы угадали c " + attempt + "-го раза");
                 break;
