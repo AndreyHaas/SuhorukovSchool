@@ -24,7 +24,7 @@ class NumberGuesser {
         if (confirmation.equals(CONFIRM_CONTINUE)) {
             System.out.println("Итак, продолжим игру :)");
             attempt = 0;
-            game();
+            run();
         } else if (confirmation.equals(REFUSING_CONTINUE)) {
             System.out.println("Вы отказались от игры со мной :(");
             scanner.close();
@@ -34,7 +34,7 @@ class NumberGuesser {
     }
 
 
-    public void game() {
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         int randomValue = getRandomValue();
 

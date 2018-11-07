@@ -1,45 +1,45 @@
 package com.jcourse.gaas.firstlession.examples;
 
-class Student {
-    int age;
-    float weight;
-
-    Student(int age, float weight) {
-        this.age = age;
-        this.weight = weight;
-    }
-}
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+//java.lang.*
+//java.util.*
 
 public class Main {
-    //camelCase variables, methods)
-    //MyClass - Pascal case (classes, interfaces, enums)
-
-    private static final String MY_STRING_CONST = "Hello";
-
-    private static String greetUser(String user) {
-        return MY_STRING_CONST + ", " + user;
-    }
-
     public static void main(String[] args) {
-        String greet = greetUser("Andreas");
-        System.out.println(greet);
-        Student student = new Student(23, 86f);
-        student.weight += 1;
-        System.out.println("Student age: " + student.age);
-        System.out.println("Student weight: " + student.weight);
-        int max = Math.max(32, 34);
-        System.out.println(max);
-    }
+        Random random = new Random();
+        int i = random.nextInt(100) + 1; // [1, 100]
+        System.out.println(i);
 
-    static void swap(int aa, int bb) {
-        int tmp = aa;
-        aa = bb;
-        bb = tmp;
-        System.out.println("aa: " + aa);
-        System.out.println("bb: " + bb);
-    }
+//        InputStream console = System.in;
+//        Scanner scanner = new Scanner(console);
+//        try {
+//            int read = scanner.nextInt();
+//            System.out.println("Read int: " + read);
+//        } catch (InputMismatchException e) {
+//            System.err.println("Incorrect input. Expected: int from 1 to 100");
+//            e.printStackTrace();
+//        }
+//        System.out.println("It's okay");
+        String defaultEncoding = System.getProperty("file.encoding");
+        System.out.println("encoding: " + defaultEncoding);
+        String utf16Str = new String("Hello".getBytes(), Charset.forName("ASCII"));
+        System.out.println("ASCII str: " + utf16Str);
+        //Throwable -> Exception, Error
 
-    static void incraseAge(Student studentParam) {
-        studentParam.age += 5;
+        String[] strArray = new String[12];
+        Object[] objArray = strArray;
+        List<? super Number> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(1);
+        numbers.add(1.f);
+        numbers.add(null);
+
+        //Heap pollution
+        //PECS - Producer Extends Consumer Super
+
+        //Effective java Джошуа Блох
     }
 }
