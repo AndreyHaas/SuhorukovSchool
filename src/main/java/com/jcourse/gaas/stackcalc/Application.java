@@ -1,6 +1,6 @@
 package com.jcourse.gaas.stackcalc;
 
-import com.jcourse.gaas.stackcalc.commands.*;
+import com.jcourse.gaas.stackcalc.command.*;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
@@ -26,7 +26,7 @@ public class Application {
             scanner = new Scanner(System.in);
         }
 
-        Map<String, Commands> commandsMap = new HashMap<String, Commands>();
+        Map<String, Command> commandsMap = new HashMap<String, Command>();
         commandsMap.put("push", new Push());
         commandsMap.put("print", new Print());
         commandsMap.put("pop", new Pop());

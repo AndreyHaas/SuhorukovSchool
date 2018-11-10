@@ -1,10 +1,10 @@
-package com.jcourse.gaas.stackcalc.commands;
+package com.jcourse.gaas.stackcalc.command;
 
 import java.util.Map;
 import java.util.Stack;
 
-public class Pop implements Commands {
+public class Define implements Command {
     public void execute(Stack<Double> stack, Map<String, Double> define, String[] str) {
-        stack.pop();
+        define.put(str[1], Double.valueOf(str[2]));
     }
 }
