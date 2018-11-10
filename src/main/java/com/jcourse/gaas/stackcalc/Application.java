@@ -12,21 +12,12 @@ import java.util.Stack;
 
 public class Application {
     private static Logger log = Logger.getRootLogger();
+
     public static void main(String[] args) {
-        Stack<Double> stack = new Stack<Double>();
+        Stack<Double> stack = new Stack<>();
         Scanner scanner = null;
 
-        if (args.length > 0) {
-            try {
-                scanner = new Scanner(new FileInputStream(args[0]));
-            } catch (FileNotFoundException ex) {
-                log.error(ex);
-            }
-        } else {
-            scanner = new Scanner(System.in);
-        }
-
-        Map<String, Command> commandsMap = new HashMap<String, Command>();
+        Map<String, Command> commandsMap = new HashMap<>();
         commandsMap.put("push", new Push());
         commandsMap.put("print", new Print());
         commandsMap.put("pop", new Pop());
@@ -37,11 +28,10 @@ public class Application {
         commandsMap.put("multi", new Multiplication());
         commandsMap.put("sub", new Subtraction());
 
-        Map<String, Double> variableMap = new HashMap<String, Double>();
 
+        Map<String, Double> variableMap = new HashMap<>();
         String s;
 
-        assert scanner != null;
         while (scanner.hasNext()) {
             s = scanner.nextLine();
             String[] str = s.split(" ");
@@ -55,6 +45,24 @@ public class Application {
             } else {
                 log.error("Unregistered command in commandsMap");
             }
+        }
+    }
+
+    private void getResource(String[] args) {
+        Scanner scanner = null;
+
+        if (args.length > 0) {
+            try {
+                scanner = new Scanner(new FileInputStream(args[0]));
+            } catch (FileNotFoundException ex) {
+                log.error(ex);
+            } finally {
+                if (scanner != null) {
+                    scanner.close();
+                }
+            }
+        } else {
+            scanner = new Scanner(System.in);
         }
     }
 }
