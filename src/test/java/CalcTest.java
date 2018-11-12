@@ -11,13 +11,13 @@ import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CalcTest {
+class CalcTest {
     private Stack<Double> stack = new Stack<>();
     private Map<String, Double> map = new HashMap<>();
 
     @Test
     @DisplayName("Test for additional")
-    public void addTest() {
+    void addTest() {
         Command add = new Addition();
         double firstValue = 5.0;
         stack.push(firstValue);
@@ -27,10 +27,9 @@ public class CalcTest {
         assertEquals(9.0, stack.peek(), .000001);
     }
 
-    @Test
+    @RepeatedTest(2)
     @DisplayName("Test for division")
-    @RepeatedTest(3)
-    public void divTest() {
+    void divTest() {
         Command div = new Division();
         double firstValue = 4.0;
         stack.push(firstValue);
