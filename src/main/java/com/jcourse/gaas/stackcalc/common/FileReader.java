@@ -1,7 +1,6 @@
 package com.jcourse.gaas.stackcalc.common;
 
 import com.jcourse.gaas.stackcalc.command.*;
-import com.sun.javaws.Main;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
