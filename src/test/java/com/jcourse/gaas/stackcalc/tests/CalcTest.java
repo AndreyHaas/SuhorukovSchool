@@ -1,3 +1,5 @@
+package com.jcourse.gaas.stackcalc.tests;
+
 import com.jcourse.gaas.stackcalc.command.Addition;
 import com.jcourse.gaas.stackcalc.command.Command;
 import com.jcourse.gaas.stackcalc.command.Division;
