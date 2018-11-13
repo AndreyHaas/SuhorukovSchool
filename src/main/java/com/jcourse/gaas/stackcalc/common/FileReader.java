@@ -1,6 +1,7 @@
 package com.jcourse.gaas.stackcalc.common;
 
 import com.jcourse.gaas.stackcalc.command.*;
+import com.sun.javaws.Main;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
@@ -18,7 +19,8 @@ public class FileReader {
         Stack<Double> stack = new Stack<>();
         String s;
         Scanner scanner = null;
-        String fileName = "C:\\Users\\Andreas Haas\\IdeaProjects\\SuhorukovSchool\\src\\main\\resources\\source.txt";
+        String fileName = "src/main/resources/source.txt";
+
 
         try {
             scanner = new Scanner(new FileInputStream(fileName));
