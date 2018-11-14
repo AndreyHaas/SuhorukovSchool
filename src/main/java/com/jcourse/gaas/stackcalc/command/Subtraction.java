@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class Subtraction implements Command {
     private static Logger log = Logger.getRootLogger();
+
     public void execute(Stack<Double> stack, Map<String, Double> define, String[] str) {
         if (stack.isEmpty()) {
             log.error("Error. Stack is empty");
@@ -15,5 +16,10 @@ public class Subtraction implements Command {
         } else {
             stack.push(stack.pop() - stack.pop());
         }
+    }
+
+    @Override
+    public void execute() {
+
     }
 }

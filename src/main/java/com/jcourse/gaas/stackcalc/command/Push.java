@@ -11,4 +11,9 @@ public class Push implements Command {
             stack.push(Double.valueOf(str[1]));
         }
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

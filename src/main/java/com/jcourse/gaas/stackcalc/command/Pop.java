@@ -7,4 +7,9 @@ public class Pop implements Command {
     public void execute(Stack<Double> stack, Map<String, Double> define, String[] str) {
         stack.pop();
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

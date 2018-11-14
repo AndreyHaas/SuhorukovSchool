@@ -14,4 +14,9 @@ public class Print implements Command {
             System.out.println(stack.peek());
         }
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

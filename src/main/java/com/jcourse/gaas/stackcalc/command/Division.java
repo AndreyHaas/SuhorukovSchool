@@ -16,4 +16,9 @@ public class Division implements Command {
             stack.push(stack.pop() / stack.pop());
         }
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

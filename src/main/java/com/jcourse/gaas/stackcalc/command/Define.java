@@ -8,4 +8,9 @@ public class Define implements Command {
         define.put(str[1], Double.valueOf(str[2]));
 
     }
+
+    @Override
+    public void execute() {
+
+    }
 }
