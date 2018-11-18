@@ -11,10 +11,10 @@ public class Calculator {
         this.parser = parser;
     }
 
-    public void calculate() {
-        List<Command> commands = parser.getCommands();
-        for (Command command : commands) {
-            command.execute();
-        }
-    }
+//    public void calculate() {
+//        List<Command> commands = parser.getCommands();
+//        for (Command command : commands) {
+//            command.execute();
+//        }
+//    }
 }

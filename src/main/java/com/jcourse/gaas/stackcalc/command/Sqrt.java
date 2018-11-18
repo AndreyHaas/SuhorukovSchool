@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class Sqrt implements Command {
     private static Logger log = Logger.getRootLogger();
+
     @Override
     public void execute(Stack<Double> stack, Map<String, Double> define, String[] str) {
         if (stack.isEmpty()) {
@@ -14,10 +15,6 @@ public class Sqrt implements Command {
         } else {
             stack.push(Math.sqrt(stack.pop()));
         }
-    }
-
-    @Override
-    public void execute() {
 
     }
 }

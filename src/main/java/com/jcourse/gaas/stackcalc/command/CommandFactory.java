@@ -9,38 +9,44 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Stack;
+import java.util.*;
 
 public class CommandFactory {
     private static Logger LOG = Logger.getRootLogger();
     private static final Stack<Double> STACK = new Stack<>();
-    public static final Map<String, Double> VARIABLES = new HashMap<>();
+    private static final Map<String, Double> VARIABLES = new HashMap<>();
     private static Properties properties;
 
     static {
-        properties = new Properties();
+        properties = new Properties();//Map<String, String>
         try {
-            properties.load(CommandFactory.class.getClassLoader().getResourceAsStream("commands.properties"));
+            properties.load(CommandFactory.class
+                    .getClassLoader()
+                    .getResourceAsStream("commands.properties"));
         } catch (IOException e) {
-            LOG.error(e);
+            LOG.error("Property file not found");
         }
     }
 
-    public static Command createCommand(String command, boolean proxy)
-            throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        String[] words = command.split(" ");
-        String className = properties.getProperty(words[0]);
+    public static Command createCommand(String cmd, boolean proxy) throws
+            ClassNotFoundException,
+            IllegalAccessException,
+            InstantiationException {
+
+        String[] words = cmd.split(" ");
+        String className = properties.getProperty(words[0].toUpperCase());
         Class<?> clazz = Class.forName(className);
         Field[] fields = clazz.getDeclaredFields();
-        Command command1 = (Command) clazz.newInstance();
+
+        Command command = (Command) clazz.newInstance();
+
         for (Field field : fields) {
             Inject inject = field.getAnnotation(Inject.class);
+
             if (inject != null) {
                 ArgType argType = inject.arg();
                 field.setAccessible(true);
+
                 switch (argType) {
                     case STACK:
                         field.set(command, STACK);
@@ -56,30 +62,35 @@ public class CommandFactory {
                 }
             }
         }
+
         if (proxy) {
-            return createProxy(command1);
+            return createProxy(command);
         } else {
-            return command1;
+            return command;
         }
     }
 
-    private static class LoggerInvocationHandler implements InvocationHandler {
+    private static class LoggerInvocationHander implements InvocationHandler {
         private Command command;
 
-        LoggerInvocationHandler(Command command) {
+        public LoggerInvocationHander(Command command) {
             this.command = command;
         }
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            Object result = method.invoke(command, args);
+            Object result;
+            result = method.invoke(command, args);
             return result;
         }
     }
 
     private static Command createProxy(Command command) {
-        Command proxy = (Command) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]
-                {Command.class}, new LoggerInvocationHandler(command));
+        Command proxy;
+        proxy = (Command) Proxy.newProxyInstance(
+                ClassLoader.getSystemClassLoader(),
+                new Class[]{Command.class},
+                new LoggerInvocationHander(command));
         return proxy;
     }
 }

@@ -8,8 +8,4 @@ public class Pop implements Command {
         stack.pop();
     }
 
-    @Override
-    public void execute() {
-
-    }
 }
