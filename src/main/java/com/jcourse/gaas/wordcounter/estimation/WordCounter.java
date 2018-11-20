@@ -15,8 +15,14 @@ public class WordCounter implements Comparable<WordCounter> {
     }
 
     @Override
-    public int compareTo(WordCounter o) {
-        return o.counter - counter;
+    public int compareTo(WordCounter wordCounter) {
+        if (counter < wordCounter.counter) {
+            return 1;
+        } else if (counter > wordCounter.counter) {
+            return -1;
+        } else {
+            return word.compareTo(wordCounter.word);
+        }
     }
 
     @Override
@@ -31,5 +37,13 @@ public class WordCounter implements Comparable<WordCounter> {
     @Override
     public int hashCode() {
         return Objects.hash(word, counter);
+    }
+
+    @Override
+    public String toString() {
+        return "WordCounter{" +
+                "word='" + word + '\'' +
+                ", counter=" + counter +
+                '}';
     }
 }
