@@ -2,9 +2,6 @@ package com.jcourse.gaas.wordcounter.estimation;
 
 import org.apache.log4j.Logger;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 public class WordCounter implements Comparable<WordCounter> {
@@ -16,12 +13,8 @@ public class WordCounter implements Comparable<WordCounter> {
         this.word = word;
     }
 
-    void fileWriter() {
-        try (PrintWriter writer = new PrintWriter("src/main/resources/output.txt", "UTF-8")) {
-            writer.printf("%s, %d, %.2f%n", word, counter);
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            log.error(e);
-        }
+    public WordCounter() {
+
     }
 
     void plus() {

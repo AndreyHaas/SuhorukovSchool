@@ -47,5 +47,10 @@ public class Main {
         Collections.sort(list);
 
         list.forEach(System.out::println);
+        Application application = new Application();
+        for (WordCounter wordCounter : list) {
+            application.fileWriter();
+        }
+
     }
 }
