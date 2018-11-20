@@ -46,9 +46,6 @@ public class Main {
 
         Collections.sort(list);
 
-        for (WordCounter wordCounter : list) {
-            System.out.println(wordCounter);
-//            WordCounter.fileWriter();
-        }
+        list.forEach(System.out::println);
     }
 }
