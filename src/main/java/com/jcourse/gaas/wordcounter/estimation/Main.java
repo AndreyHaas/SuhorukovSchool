@@ -31,15 +31,24 @@ public class Main {
                     }
                 }
             }
+
+            if (builder.length() > 0) {
+                String word = builder.toString();
+                WordCounter wordCounter = wordMap.getOrDefault(word, new WordCounter(word));
+                wordCounter.plus();
+                wordMap.put(word, wordCounter);
+            }
         } catch (IOException e) {
             log.error(e);
         }
 
         List<WordCounter> list = new ArrayList<>(wordMap.values());
+
         Collections.sort(list);
 
         for (WordCounter wordCounter : list) {
             System.out.println(wordCounter);
+//            WordCounter.fileWriter();
         }
     }
 }
