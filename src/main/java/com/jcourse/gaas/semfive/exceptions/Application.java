@@ -1,33 +1,49 @@
 package com.jcourse.gaas.semfive.exceptions;
 
-public class Application implements ExceptionGenerator {
-    @Override
-    public void generateNullPointerException() {
+public class Application {
+    public static void main(String[] args) {
+        ExceptionGenImpl exceptionGen = new ExceptionGenImpl();
 
-    }
+        try {
+            exceptionGen.generateNullPointerException();
+        } catch (NullPointerException ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
 
-    @Override
-    public void generateClassCastException() {
+        try {
+            exceptionGen.generateClassCastException();
+        } catch (ClassCastException ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
 
-    }
+        try {
+            exceptionGen.generateOutOfMemoryError();
+        } catch (OutOfMemoryError ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
 
-    @Override
-    public void generateNumberFormatException() {
+        try {
+            exceptionGen.generateNumberFormatException();
+        } catch (NumberFormatException ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
 
-    }
+        try {
+            exceptionGen.generateStackOverflowError();
+        } catch (StackOverflowError ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
 
-    @Override
-    public void generateStackOverflowError() {
-
-    }
-
-    @Override
-    public void generateOutOfMemoryError() {
-
-    }
-
-    @Override
-    public void generateMyException(String message) throws MyException {
-
+        try {
+            exceptionGen.generateMyException("Тут ошибка");
+        } catch (MyException e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
     }
 }

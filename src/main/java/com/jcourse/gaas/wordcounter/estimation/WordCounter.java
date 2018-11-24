@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class WordCounter implements Comparable<WordCounter> {
     private static Logger log = Logger.getRootLogger();
-    private String word;
-    private int counter;
+    protected String word;
+    protected int counter;
 
     WordCounter(String word) {
         this.word = word;

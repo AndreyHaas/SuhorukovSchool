@@ -46,11 +46,22 @@ public class Main {
 
         Collections.sort(list);
 
-        list.forEach(System.out::println);
-        Application application = new Application();
-        for (WordCounter wordCounter : list) {
-            application.fileWriter();
+        int totalWords = 0;
+        for (int i = 0; i < list.size(); i++) {
+            totalWords += i;
         }
 
+        list.forEach(System.out::println);
+        for (WordCounter wordCounter : list) {
+            fileWriter(wordCounter, totalWords);
+        }
+    }
+
+    static void fileWriter(WordCounter wordCounter, int totalWords) {
+        try (PrintWriter writer = new PrintWriter("src/main/resources/output.txt", "UTF-8")) {
+            writer.printf("%s, %d, %f.2", wordCounter.word, wordCounter.counter, wordCounter.counter/totalWords*100);
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            log.error(e);
+        }
     }
 }
